@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary Surprise 💖</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  overflow:hidden;
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  position:relative;
+  padding:20px;
+}
+
+.active{
+  display:flex;
+}
+
+/* 💖 FIRST PAGE BACKGROUND IMAGE */
+
+#page1{
+  background:url('bg.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* DARK OVERLAY */
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+}
+
+.content{
+  position:relative;
+  z-index:2;
+}
+
+/* ✨ FADE */
+
+.fade-text{
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+  }
+}
+
+/* ❤️ HEART */
+
+.heart{
+  font-size:40px;
+  cursor:pointer;
+  margin-top:20px;
+  animation:pulse 1.5s infinite;
+  z-index:2;
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.2);
+  }
+}
+
+/* 💛 PAGE 2 HEART */
+
+.heart-container{
+  position:relative;
+  width:280px;
+  height:280px;
+  cursor:pointer;
+}
+
+.heart-img{
+  width:100%;
+  height:100%;
+}
+
+/* 💛 HEART ZOOM */
+
+.zoom-heart{
+  animation:zoomHeart 3s infinite alternate;
+}
+
+@keyframes zoomHeart{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.15);
+  }
+}
+
+/* 💛 TEXT INSIDE HEART */
+
+.heart-text{
+  position:absolute;
+  top:52%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:60%;
+  text-align:center;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  text-shadow:0 0 10px gold,
+              0 0 20px gold;
+}
+
+/* 📸 LAST PAGE IMAGE ZOOM */
+
+.zoom{
+  animation:zoomImg 6s infinite alternate;
+}
+
+@keyframes zoomImg{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.15);
+  }
+}
+
+/* 💜 FLOATING HEARTS */
+
+.floating-heart{
+  position:absolute;
+  top:-20px;
+  font-size:20px;
+  animation:fall linear;
+  z-index:1;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
+
+/* BUTTONS */
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  margin:10px;
+  font-size:16px;
+}
+
+.yes{
+  background:green;
+  color:white;
+}
+
+.no{
+  background:red;
+  color:white;
+  position:relative;
+}
+
+/* INPUT */
+
+input{
+  padding:12px;
+  width:250px;
+  border-radius:20px;
+  border:none;
+  outline:none;
+  text-align:center;
+}
+
+/* TEXT COLORS */
+
+.white-text{
+  color:white;
+}
+
+.black-text{
+  color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <h2 class="white-text fade-text">
+      Ennoda heart etho solla nenaikuthu 🤔...<br>
+      Enna nu paaru...
+    </h2>
+
+    <div class="heart" onclick="nextPage(2)">🩷</div>
+
+  </div>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2" style="background:black;">
+
+  <div class="heart-container" onclick="nextPage(3)">
+
+    <img src="heart.png" class="heart-img zoom-heart">
+
+    <div class="heart-text fade-text">
+      ✨ Happy Anniversary Thangoo 😘💐 ✨
+    </div>
+
+  </div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3" style="background:white;">
+
+  <h2 class="black-text fade-text">
+    <b>Happy 1st Anniversary my love ❤️</b>
+  </h2>
+
+  <br>
+
+  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+
+    Indha oru varusham en life la romba azhagana journey 💖...<br><br>
+
+    Indha oru varusham la naan un kitta anubavicha love, care, understanding ellam marakka mudiyadha memories 💝...<br><br>
+
+    Ennoda attitude ah handle panrathu romba kashtam... ana ni romba alaga handle panniruka 🤗...<br><br>
+
+    So enakku ippo onnu thonuthu... enna nu paaru 👇
+
+  </p>
+
+  <div class="heart" onclick="nextPage(4)">🩷</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4" style="background:white;">
+
+  <img src="couple.png" width="240">
+
+  <br><br>
+
+  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+
+    Innum romba varusam un kuda ipdiye irukanum nu enakku thonuthu... ni ready ah 🫴
+
+  </p>
+
+  <br>
+
+  <p class="black-text fade-text">
+    <b>Love you 😘</b>
+  </p>
+
+  <br>
+
+  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+
+    Un kai pudichu nadakkura ovvoru nimishamum enakku oru azhagana kanavu maari…<br><br>
+
+    andha kanavu ipdiye mudiyama life fulla continue aaganum nu aasai…<br><br>
+
+    nee en kooda irupiyaa? 🫴
+
+  </p>
+
+  <br>
+
+  <!-- YES / NO -->
+
+  <div>
+
+    <button class="yes" onclick="nextPage(5)">
+      Yes 💚
+    </button>
+
+    <button class="no" id="noBtn" onmouseover="moveNo()">
+      No 💔
+    </button>
+
+  </div>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="page5" style="background:black;">
+
+  <!-- 🎶 MUSIC -->
+
+  <audio id="music" loop>
+    <source src="love.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- 📸 IMAGE -->
+
+  <img src="last.png" width="250" class="zoom">
+
+  <br><br>
+
+  <h2 class="white-text fade-text">
+    Love you 😘
+  </h2>
+
+  <br>
+
+  <input
+    type="text"
+    id="reply"
+    placeholder="Love you too nu solluviya...? 💌"
+  >
+
+  <br><br>
+
+  <button onclick="sendLove()">
+    Send 💖
+  </button>
+
+  <br>
+
+  <h2 id="replyText" class="white-text"></h2>
+
+</div>
+
+<script>
+
+/* PAGE CHANGE */
+
+let currentPage = 1;
+
+function nextPage(page){
+
+  document
+  .getElementById("page"+currentPage)
+  .classList.remove("active");
+
+  document
+  .getElementById("page"+page)
+  .classList.add("active");
+
+  currentPage = page;
+
+  /* 🎶 PLAY SONG ONLY LAST PAGE */
+
+  if(page === 5){
+
+    let music =
+    document.getElementById("music");
+
+    music.play();
+
+  }
+
+}
+
+/* 😆 NO BUTTON ESCAPE */
+
+function moveNo(){
+
+  let btn =
+  document.getElementById("noBtn");
+
+  let x =
+  Math.random()*200 - 100;
+
+  let y =
+  Math.random()*200 - 100;
+
+  btn.style.transform =
+  `translate(${x}px, ${y}px)`;
+
+}
+
+/* 💌 REPLY */
+
+function sendLove(){
+
+  let val =
+  document
+  .getElementById("reply")
+  .value
+  .toLowerCase();
+
+  if(val.includes("love")){
+
+    document
+    .getElementById("replyText")
+    .innerHTML =
+    "😍 Love you toooo!!! 💖";
+
+  }
+
+  else{
+
+    document
+    .getElementById("replyText")
+    .innerHTML =
+    "🥺 Konjam love sollu...";
+  }
+
+}
+
+/* 💜 FLOATING HEARTS */
+
+function createHeart(){
+
+  let heart =
+  document.createElement("div");
+
+  heart.className =
+  "floating-heart";
+
+  heart.innerHTML = "💜";
+
+  heart.style.left =
+  Math.random()*100 + "vw";
+
+  heart.style.animationDuration =
+  (3 + Math.random()*3) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },6000);
+
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
