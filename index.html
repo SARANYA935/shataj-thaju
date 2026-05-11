@@ -36,7 +36,7 @@ body{
   display:flex;
 }
 
-/* 💖 FIRST PAGE BACKGROUND IMAGE */
+/* 💖 FIRST PAGE BG */
 
 #page1{
   background:url('bg.jpg');
@@ -91,17 +91,21 @@ body{
 
 .heart-container{
   position:relative;
-  width:280px;
-  height:280px;
+  width:300px;
+  height:300px;
   cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .heart-img{
   width:100%;
   height:100%;
+  object-fit:contain;
 }
 
-/* 💛 HEART ZOOM */
+/* 💛 HEART ANIMATION */
 
 .zoom-heart{
   animation:zoomHeart 3s infinite alternate;
@@ -112,27 +116,31 @@ body{
     transform:scale(1);
   }
   to{
-    transform:scale(1.15);
+    transform:scale(1.08);
   }
 }
 
-/* 💛 TEXT INSIDE HEART */
+/* 💛 TEXT INSIDE HEART FIXED */
 
 .heart-text{
   position:absolute;
-  top:52%;
+  top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:60%;
+  width:42%;
   text-align:center;
   color:white;
-  font-size:16px;
+  font-size:11px; /* 👈 reduced */
+  line-height:1.4;
   font-weight:bold;
-  text-shadow:0 0 10px gold,
-              0 0 20px gold;
+  word-wrap:break-word;
+  text-shadow:
+    0 0 8px gold,
+    0 0 15px gold;
+  z-index:2;
 }
 
-/* 📸 LAST PAGE IMAGE ZOOM */
+/* 📸 IMAGE ZOOM */
 
 .zoom{
   animation:zoomImg 6s infinite alternate;
@@ -239,8 +247,9 @@ input{
 
     <img src="heart.png" class="heart-img zoom-heart">
 
-    <div class="heart-text fade-text">
-      ✨ Happy Anniversary Thangoo 😘💐 ✨
+    <div class="heart-text">
+      ✨ Happy Anniversary <br>
+      Thangoo 😘💐 ✨
     </div>
 
   </div>
@@ -257,7 +266,8 @@ input{
 
   <br>
 
-  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+  <p class="black-text fade-text"
+  style="line-height:1.8; max-width:90%;">
 
     Indha oru varusham en life la romba azhagana journey 💖...<br><br>
 
@@ -277,11 +287,18 @@ input{
 
 <div class="page" id="page4" style="background:white;">
 
+  <!-- 🎶 PAGE 4 SONG -->
+
+  <audio id="proposalMusic" loop>
+    <source src="proposal.mp3" type="audio/mp3">
+  </audio>
+
   <img src="couple.png" width="240">
 
   <br><br>
 
-  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+  <p class="black-text fade-text"
+  style="line-height:1.8; max-width:90%;">
 
     Innum romba varusam un kuda ipdiye irukanum nu enakku thonuthu... ni ready ah 🫴
 
@@ -295,7 +312,8 @@ input{
 
   <br>
 
-  <p class="black-text fade-text" style="line-height:1.8; max-width:90%;">
+  <p class="black-text fade-text"
+  style="line-height:1.8; max-width:90%;">
 
     Un kai pudichu nadakkura ovvoru nimishamum enakku oru azhagana kanavu maari…<br><br>
 
@@ -315,7 +333,9 @@ input{
       Yes 💚
     </button>
 
-    <button class="no" id="noBtn" onmouseover="moveNo()">
+    <button class="no"
+    id="noBtn"
+    onmouseover="moveNo()">
       No 💔
     </button>
 
@@ -327,15 +347,15 @@ input{
 
 <div class="page" id="page5" style="background:black;">
 
-  <!-- 🎶 MUSIC -->
+  <!-- 🎶 LAST PAGE SONG -->
 
   <audio id="music" loop>
     <source src="love.mp3" type="audio/mp3">
   </audio>
 
-  <!-- 📸 IMAGE -->
-
-  <img src="last.png" width="250" class="zoom">
+  <img src="last.png"
+  width="250"
+  class="zoom">
 
   <br><br>
 
@@ -346,10 +366,9 @@ input{
   <br>
 
   <input
-    type="text"
-    id="reply"
-    placeholder="Love you too nu solluviya...? 💌"
-  >
+  type="text"
+  id="reply"
+  placeholder="Love you too nu solluviya...? 💌">
 
   <br><br>
 
@@ -359,7 +378,8 @@ input{
 
   <br>
 
-  <h2 id="replyText" class="white-text"></h2>
+  <h2 id="replyText"
+  class="white-text"></h2>
 
 </div>
 
@@ -371,9 +391,13 @@ let currentPage = 1;
 
 function nextPage(page){
 
+  // HIDE CURRENT PAGE
+
   document
   .getElementById("page"+currentPage)
   .classList.remove("active");
+
+  // SHOW NEXT PAGE
 
   document
   .getElementById("page"+page)
@@ -381,12 +405,41 @@ function nextPage(page){
 
   currentPage = page;
 
-  /* 🎶 PLAY SONG ONLY LAST PAGE */
+  // 🎶 GET SONGS
+
+  let proposalMusic =
+  document.getElementById("proposalMusic");
+
+  let music =
+  document.getElementById("music");
+
+  // 🛑 STOP ALL SONGS
+
+  if(proposalMusic){
+
+    proposalMusic.pause();
+    proposalMusic.currentTime = 0;
+
+  }
+
+  if(music){
+
+    music.pause();
+    music.currentTime = 0;
+
+  }
+
+  // 🎵 PAGE 4 SONG
+
+  if(page === 4){
+
+    proposalMusic.play();
+
+  }
+
+  // 🎵 PAGE 5 SONG
 
   if(page === 5){
-
-    let music =
-    document.getElementById("music");
 
     music.play();
 
@@ -412,7 +465,7 @@ function moveNo(){
 
 }
 
-/* 💌 REPLY */
+/* 💌 LOVE REPLY */
 
 function sendLove(){
 
